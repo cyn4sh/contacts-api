@@ -171,6 +171,17 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
+CORS_ALLOW_CREDENTIALS = True
+
+REFRESH_COOKIE = {
+    "NAME": "refresh_token",
+    "PATH": "/api/auth/",
+    "SECURE": not DEBUG,
+    "SAMESITE": "Lax",
+    "HTTPONLY": True,
+    "MAX_AGE": int(SIMPLE_JWT["REFRESH_TOKEN_LIFETIME"].total_seconds()),
+}
+
 SPECTACULAR_SETTINGS = {
     "TITLE": "Contacts API Documentation",
     "DESCRIPTION": "Generated API docs",
